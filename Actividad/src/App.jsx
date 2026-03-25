@@ -1,12 +1,52 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
-function App() {
+function Contador() {
   const [count, setCount] = useState(0)
 
+  useEffect(() => {
+    // Validar si count supera 10
+    if (count > 10) {
+      alert('¡El contador no puede superar 10!')
+      setCount(10)
+    }
+    
+    // Validar si count es negativo
+    if (count < 0) {
+      setCount(0)
+    }
+  }, [count])
+
+  const incrementar = () => {
+    setCount(count + 1)
+  }
+
+  const decrementar = () => {
+    setCount(count - 1)
+  }
+
+  return (
+    <div>
+      <p style={{ fontSize: '24px', fontWeight: 'bold' }}>Count: {count}</p>
+      <button className="counter" onClick={incrementar} style={{ display: 'block', margin: '10px auto' }}>
+        Incrementar +
+      </button>
+      <button className="counter" onClick={decrementar} style={{ display: 'block', margin: '10px auto' }}>
+        Decrementar -
+      </button>
+      {count === 0 && (
+        <p style={{ fontSize: '16px', color: '#dc3545', fontWeight: 'bold', marginTop: '10px' }}>
+          ⚠️ ¡Has llegado al límite mínimo (0)!
+        </p>
+      )}
+    </div>
+  )
+}
+
+function App() {
   return (
     <>
       <section id="center">
@@ -21,12 +61,9 @@ function App() {
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
         </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+        
+        <Contador />
+
       </section>
 
       <div className="ticks"></div>
