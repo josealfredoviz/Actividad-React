@@ -1,8 +1,68 @@
 import { useState, useEffect } from 'react'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+
+function createData(nombre, apellido, edad) {
+  return { nombre, apellido, edad }
+}
+
+const rows = [
+  createData('Grisel', 'Silva', 16),
+  createData('Leslie', 'Valenzuela', 23),
+  createData('Carlos', 'Ramirez', 25),
+  createData('Aime', 'Roman', 17),
+  createData('Luis', 'Martinez', 30),
+  createData('Jose', 'Vizcarra', 22),
+]
+
+function BasicTable() {
+  return (
+    <TableContainer component={Paper} style={{ marginTop: '24px' }}>
+      <Table sx={{ minWidth: 650 }} aria-label="tabla personas">
+        <TableHead>
+          <TableRow>
+            <TableCell><strong>Nombre</strong></TableCell>
+            <TableCell><strong>Apellido</strong></TableCell>
+            <TableCell align="right"><strong>Edad</strong></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row, index) => {
+            const esMenor = row.edad <= 17
+            return (
+              <TableRow
+                key={index}
+                sx={{ backgroundColor: esMenor ? '#ffebee' : 'inherit' }}
+              >
+                <TableCell sx={{ color: esMenor ? 'red' : 'inherit' }}>
+                  {row.nombre}
+                </TableCell>
+                <TableCell sx={{ color: esMenor ? 'red' : 'inherit' }}>
+                  {row.apellido}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ color: esMenor ? 'red' : 'inherit', fontWeight: esMenor ? 'bold' : 'normal' }}
+                >
+                  {row.edad}
+                </TableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
+}
 
 function Contador() {
   const [count, setCount] = useState(0)
@@ -42,6 +102,7 @@ function Contador() {
           ⚠️ ¡Has llegado al límite mínimo (0)!
         </p>
       )}
+      <BasicTable />
     </div>
   )
 }
