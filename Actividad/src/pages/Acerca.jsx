@@ -1,6 +1,8 @@
 import fotoPerfil from '../assets/foto-de-perfil.png';
+import { useAlumnoContext } from '../context/AlumnoContext';
 
 function Acerca() {
+  const { alumno } = useAlumnoContext();
   const skills = [
     { name: 'HTML', icon: '🌐' },
     { name: 'CSS', icon: '🎨' },
@@ -42,7 +44,7 @@ function Acerca() {
             lineHeight: '1.05',
             color: '#111827'
           }}>
-            José Alfredo Vizcarra Tirado
+            {alumno.nombre}
           </h1>
           <p style={{
             margin: '0 0 12px',
@@ -51,7 +53,25 @@ function Acerca() {
             fontWeight: '600',
             lineHeight: '1.8'
           }}>
-            Carrera: Ingeniería en Sistemas
+            Carrera: {alumno.carrera}
+          </p>
+          <p style={{
+            margin: '0 0 12px',
+            color: '#475569',
+            fontSize: '1.05rem',
+            fontWeight: '600',
+            lineHeight: '1.8'
+          }}>
+            Grupo: {alumno.grupo}
+          </p>
+          <p style={{
+            margin: '0 0 12px',
+            color: '#475569',
+            fontSize: '1.05rem',
+            fontWeight: '600',
+            lineHeight: '1.8'
+          }}>
+            Semestre: {alumno.semestre}
           </p>
           <div style={{
             backgroundColor: 'white',

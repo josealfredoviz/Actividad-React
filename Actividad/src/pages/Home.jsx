@@ -1,3 +1,5 @@
+import PerfilResumen from "../components/PerfilResumen";
+
 function Home() {
   return (
     <div style={{ padding: '24px', maxWidth: '960px', margin: '0 auto' }}>
@@ -40,6 +42,7 @@ function Home() {
         }}>
           Este portafolio está diseñado para ser claro, moderno y fácil de explorar. Si quieres conocer más sobre mí, visita la sección de Acerca de mí.
         </p>
+        <PerfilResumen />
       </div>
     </div>
   );
