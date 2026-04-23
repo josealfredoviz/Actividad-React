@@ -60,6 +60,7 @@ function Navbar() {
           <Link to="/acerca" style={linkStyle("/acerca")}>👤 Acerca de mí</Link>
           <Link to="/contacto" style={linkStyle("/contacto")}>📧 Contacto</Link>
           <Link to="/tablas" style={linkStyle("/tablas")}>📊 Tablas</Link>
+          <Link to="/usuarios" style={linkStyle("/usuarios")}>👥 Usuarios</Link>
         </div>
       </div>
     </nav>
