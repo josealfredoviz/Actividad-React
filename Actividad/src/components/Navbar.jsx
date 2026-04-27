@@ -61,6 +61,9 @@ function Navbar() {
           <Link to="/contacto" style={linkStyle("/contacto")}>📧 Contacto</Link>
           <Link to="/tablas" style={linkStyle("/tablas")}>📊 Tablas</Link>
           <Link to="/usuarios" style={linkStyle("/usuarios")}>👥 Usuarios</Link>
+
+          {/* 👇 NUEVO LINK */}
+          <Link to="/mapa" style={linkStyle("/mapa")}>🗺️ Mapa</Link>
         </div>
       </div>
     </nav>
