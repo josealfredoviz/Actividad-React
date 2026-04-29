@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 import { useState } from 'react';
 
 const containerStyle = {
@@ -26,31 +26,37 @@ const mapOptions = {
 function Mapa() {
   const [mostrarInfo, setMostrarInfo] = useState(false);
 
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  });
+
+  if (!isLoaded) {
+    return <p style={{ textAlign: 'center' }}>Cargando mapa...</p>;
+  }
+
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '20px' }}>
       <h2 style={{ textAlign: 'center', color: '#333', marginBottom: '10px' }}>
         🗺️ Mi Ubicación en Mazatlán
       </h2>
-      <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-        <GoogleMap 
-          mapContainerStyle={containerStyle} 
-          center={center} 
-          zoom={14}
-          options={mapOptions}
-        >
-          <Marker position={center} onClick={() => setMostrarInfo(true)} />
+      <GoogleMap 
+        mapContainerStyle={containerStyle} 
+        center={center} 
+        zoom={14}
+        options={mapOptions}
+      >
+        <Marker position={center} onClick={() => setMostrarInfo(true)} />
 
-          {mostrarInfo && (
-            <InfoWindow position={center} onCloseClick={() => setMostrarInfo(false)}>
-              <div style={{ padding: '5px' }}>
-                <h3 style={{ margin: '0 0 5px 0', color: '#3f51b5' }}>📍 Mi ubicación</h3>
-                <p style={{ margin: 0, fontSize: '14px' }}>Mazatlán, Sinaloa, México</p>
-              </div>
-            </InfoWindow>
-          )}
+        {mostrarInfo && (
+          <InfoWindow position={center} onCloseClick={() => setMostrarInfo(false)}>
+            <div style={{ padding: '5px' }}>
+              <h3 style={{ margin: '0 0 5px 0', color: '#3f51b5' }}>📍 Mi ubicación</h3>
+              <p style={{ margin: 0, fontSize: '14px' }}>Mazatlán, Sinaloa, México</p>
+            </div>
+          </InfoWindow>
+        )}
 
-        </GoogleMap>
-      </LoadScript>
+      </GoogleMap>
       <p style={{ textAlign: 'center', color: '#666', marginTop: '10px' }}>
         Haz clic en el marcador para ver más información
       </p>

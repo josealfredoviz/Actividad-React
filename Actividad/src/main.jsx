@@ -1,19 +1,27 @@
-import { BrowserRouter } from "react-router-dom";
-import { createRoot } from "react-dom/client";
-import App from "./App";
+// Importaciones principales
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+// Router
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Contexto
 import { AlumnoProvider } from "./context/AlumnoContext";
 
-function Root() {
-  return (
+// Componentes - App principal con su propio sistema de rutas
+import App from "./App.jsx";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <BrowserRouter>
       <AlumnoProvider>
-        <App />
+
+        {/* Rutas - App maneja todas las rutas internas */}
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+
       </AlumnoProvider>
     </BrowserRouter>
-  );
-}
-
-createRoot(document.getElementById('root')).render(
-  <Root />
+  </React.StrictMode>
 );
-
