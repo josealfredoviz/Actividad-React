@@ -63,6 +63,7 @@ function Navbar() {
           <Link to="/usuarios" style={linkStyle("/usuarios")}>👥 Usuarios</Link>
           <Link to="/mapa" style={linkStyle("/mapa")}>🗺️ Mapa</Link>
           <Link to="/ruta" style={linkStyle("/ruta")}>🚗 Ruta</Link>
+          <Link to="/drawing" style={linkStyle("/drawing")}>✏️ Dibujar</Link>
         </div>
       </div>
     </nav>
